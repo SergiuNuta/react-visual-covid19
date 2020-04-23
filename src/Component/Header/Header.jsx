@@ -8,12 +8,12 @@ export default class Header extends Component {
         return (
             <>
                 <div className={styles.head}>
-                    <div>NewConfirmed: {globalData.NewConfirmed}</div>
-                    <div>TotalConfirmed: {globalData.TotalConfirmed}</div>
-                    <div>NewDeaths: {globalData.NewDeaths}</div>
-                    <div>TotalDeaths: {globalData.TotalDeaths}</div>
-                    <div>NewRecovered: {globalData.NewRecovered}</div>
-                    <div>TotalRecovered: {globalData.TotalRecovered}</div>
+                    <div><span>NewConfirmed:</span> {globalData.NewConfirmed}</div>
+                    <div><span>TotalConfirmed:</span> {globalData.TotalConfirmed}</div>
+                    <div><span>NewDeaths:</span> {globalData.NewDeaths}</div>
+                    <div><span>TotalDeaths:</span> {globalData.TotalDeaths}</div>
+                    <div><span>NewRecovered:</span> {globalData.NewRecovered}</div>
+                    <div><span>TotalRecovered:</span> {globalData.TotalRecovered}</div>
                 </div>
             </>
         )

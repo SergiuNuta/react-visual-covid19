@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import styles from "./App.module.scss";
-import Card from '../../Component/Card/Card';
+// import Card from '../../Component/Card/Card';
 import axios from 'axios';
 import SearchBar from "../../Component/SearchBar/SearchBar";
 import Header from "../../Component/Header/Header";
@@ -16,6 +16,7 @@ export default class App extends Component {
   }
 
   setSearchText = event => {
+    event.preventDefault();
     const searchText = event.target.value.toLowerCase();
     this.setState({ ...this.state, searchText }, this.filteredCountry);
   }

@@ -9,7 +9,7 @@ export default class CardList extends Component {
                 {this.props.countryData ? (
                     <section className={styles.cards}>
                         {this.props.countryData.map((country, index) => (
-                            <Card countryData={country} key={index} />
+                            <Card countryData={country} key={index} user={this.props.user}/>
                         ))}
                     </section>) : (
                         <h1>Loading data...</h1>

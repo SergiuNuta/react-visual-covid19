@@ -4,7 +4,8 @@ import styles from "./App.module.scss";
 import axios from 'axios';
 import SearchBar from "../../Component/SearchBar/SearchBar";
 import Header from "../../Component/Header/Header";
-import CardList from '../../Component/CardList/CardList';
+// import CardList from '../../Component/CardList/CardList';
+import Routes from '../../routes/Routes';
 
 export default class App extends Component {
   state = {
@@ -18,11 +19,22 @@ export default class App extends Component {
   setSearchText = event => {
     event.preventDefault();
     const searchText = event.target.value.toLowerCase();
-    this.setState({ ...this.state, searchText }, this.filteredCountry);
+    axios.get(this.state.api)
+    .then(res => {
+      this.setState({
+        countries: res.data['Countries'],
+        searchText,
+        filteredCountry: res.data['Countries']
+      }, this.filteredCountry)
+    })
+    .catch(error => {
+      console.log(error)
+    })
+    // this.setState({ ...this.state, searchText }, this.filteredCountry);
   }
 
   filteredCountry = () => {
-    let filteredCountry = this.state.countries.filter(country => {
+    const filteredCountry = this.state.countries.filter(country => {
       return country.Country.toLowerCase().includes(this.state.searchText);
     });
     this.setState({ filteredCountry });
@@ -31,9 +43,9 @@ export default class App extends Component {
   async componentDidMount() {
     const res = await axios.get(this.state.api);
     this.setState({
-      countries: res.data['Countries'],
+      // countries: res.data['Countries'],
       global: res.data['Global'],
-      filteredCountry: res.data['Countries']
+      // filteredCountry: res.data['Countries']
     });
   }
   render() {
@@ -42,7 +54,8 @@ export default class App extends Component {
       <section className={styles.app}>
         <Header globalData={this.state.global} />
         <SearchBar setSearchText={this.setSearchText} />
-        <CardList  countryData={this.state.filteredCountry} />
+        {/* <CardList  countryData={this.state.filteredCountry} /> */}
+        <Routes countryData={this.state.filteredCountry} />
         </section>
       </>
     );
